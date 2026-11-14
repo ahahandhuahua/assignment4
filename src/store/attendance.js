@@ -1,7 +1,7 @@
 import { reactive, computed, watch } from 'vue'
 import { createSeedData, PERIODS } from '../data/seed'
 
-const STORAGE_KEY = 'classroom-attendance-v1'
+const STORAGE_KEY = 'classroom-attendance-v2'
 
 export const PERIOD_OPTIONS = PERIODS
 
