@@ -368,6 +368,7 @@ function removeStudent(studentId) {
 function importStudents(rows, mode = 'append') {
   const cls = activeClass.value
   const existing = new Set(cls.students.map((item) => item.sid))
+  const previousRecords = { ...(state.draft?.records || {}) }
   if (mode === 'replace') {
     cls.students = []
     existing.clear()
@@ -392,6 +393,9 @@ function importStudents(rows, mode = 'append') {
     added += 1
   })
   ensureDraft(state.activeClassId, state.draft.date, state.draft.period)
+  Object.entries(previousRecords).forEach(([id, value]) => {
+    if (state.draft.records[id] !== undefined) state.draft.records[id] = value
+  })
   return { added, skipped }
 }
 
